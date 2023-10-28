@@ -12,11 +12,11 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - name: Show system
-      run: |
-        echo -e "Total CPU cores\t: $(nproc)"
-        cat /proc/cpuinfo | grep 'model name'
-        cpu_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
+    #- name: Show system
+      #run: |
+        #echo -e "Total CPU cores\t: $(nproc)"
+        #cat /proc/cpuinfo | grep 'model name'
+        #cpu_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
         #if [[ ! "$cpu_name" =~ "8171M" ]]; then
         #echo "CPU不为8171M，性能不足，停止执行命令"
         #exit 1
