@@ -17,11 +17,11 @@ jobs:
         echo -e "Total CPU cores\t: $(nproc)"
         cat /proc/cpuinfo | grep 'model name'
         cpu_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
-        if [[ ! "$cpu_name" =~ "8370C" ]]; then
-        echo "CPU不为8370C，性能不足，停止执行命令"
+        if [[ ! "$cpu_name" =~ "8171M" ]]; then
+        echo "CPU不为8171M，性能不足，停止执行命令"
         exit 1
         else
-        echo "CPU为8370C，继续执行命令"
+        echo "CPU为8171M，继续执行命令"
         ulimit -a
         fi
     - name: Maximize build space
@@ -98,7 +98,7 @@ jobs:
     - name: Make Download
       run: |
         cd openwrt
-        make download -j50
+        make download -j8
     - name: Compile Openwrt
       id: compileopenwrt
       continue-on-error: true
@@ -112,7 +112,7 @@ jobs:
       run: |
         cat openwrt/.config
         echo '================================================================'
-        cd openwrt && make -j1 V=s
+        cd openwrt && make -j8 ||make -j1 V=s
     - name: Organize files
       id: organize
       run: |
